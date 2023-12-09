@@ -1,0 +1,23 @@
+Ok, alhamdulillah solve
+
+Jadi supaya si browser nangkep cookie dari
+hit api yang beda origin nya, maka pas nge fetch()
+di options nya tambahin credentials: 'include'.
+Nah, belum selesai. Supaya si browser nya gak nge blok
+cors, pastiin juga resopnse Header hasil nge fetch
+tadi (yang dapetin cookie) harus punya Header
+ 'Access-Control-Allow-Credentials' : 'true', karena
+ pas dicoba secara default nya isi nya string kosong ('')
+
+Gimana caranya supaya bernilai 'true'? origin/domain
+client kita didaftarin di cors nya daftarin (kalau 
+di express kayak pakai library cors jadi kayak)
+
+app.use(cors({
+  origin: ['http://localhost:3000'],
+}))
+
+kalau udah, ya gitu lah. cookie disimpan dan gak ke blok cors.
+
+referensi
+https://stackoverflow.com/questions/40231813/set-cookie-from-remote-api-not-working
